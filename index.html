@@ -1,11 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>세 남자를 소개합니다</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+        * {
+            font-family: 'Dongle', sans-serif;
+            font-size: 36px;
+        }
+
+        .mytitle {
+            border: 1px solid black;
+            border-radius: 5px;
+
+            height: 250px;
+            width: 1200px;
+            color: black;
+            margin: 0px auto 0px auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team_intro {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team_intro_box {
+            width: 400px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team_intro_box_title {}
+
+        .team_intro_box_cont {
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        .team_intro_img {
+            margin-left: 300px;
+            background-image: url(./src/img/img_gather_town.png);
+            background-position: center;
+            background-size: cover;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
 </head>
+
+
 <body>
-    
+    <div class="mytitle">
+        요기는 상단바 "남자가 셋 소개도 셋"
+    </div>
+    <div>
+        Spring B - 3
+    </div>
+    <div class="team_intro">
+        <div class="team_intro_box">
+            <div class="team_intro_box_title">
+                team.세 남자
+            </div>
+            <div class="team_intro_box_cont">
+                <h1>남자가 셋 소개도 셋!</h1>
+                <br>감사합니다.</br>
+            </div>
+        </div>
+        <div class="team_intro_img">
+            개더타운 사진
+        </div>
+    </div>
+    <div>
+        멤버 카드
+    </div>
+    <div>
+        방명록
+    </div>
+
+
 </body>
+
 </html>
