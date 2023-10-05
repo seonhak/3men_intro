@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세 남자를 소개합니다</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+        * {
+            font-family: 'Dongle', sans-serif;
+            font-size: 36px;
+        }
+
+        .mytitle {
+            border: 1px solid black;
+            border-radius: 5px;
+
+            height: 250px;
+            width: 1200px;
+            color: black;
+            margin: 0px auto 0px auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .guest {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .guest_btn {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .guest_book {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .guest_booklist {
+            border: 1px solid black;
+
+        }
+
+        .guest_booklist_line {
+            height: fit-content;
+            padding-right: 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+        }
+    </style>
+
+    <script type="module">
+        let selectedMenu = '<btn id="btnGoGb" style="font-weight:bold;">방명록</btn>'
+        $('#btnGoGb').replaceWith(selectedMenu);
+        $('#myTitle').click(async function () {
+            window.location = "index.html";
+            window.location.href = "index.html";
+            window.location.assign("index.html");
+        })
+
+        $('#btnGoGb').click(async function () {
+            window.location = "guest_book.html";
+        })
+        $('#btnGoIndex').click(async function () {
+            window.location = "index.html";
+        })
+
+        $('#btnGbWrite').click(async function () {
+            $('#guestBook').toggle();
+        })
+
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            apiKey: "AIzaSyDujVii00UPF9KdTE2FGNzVmky0TxiZrf0",
+            authDomain: "men-intro.firebaseapp.com",
+            projectId: "men-intro",
+            storageBucket: "men-intro.appspot.com",
+            messagingSenderId: "1025596003609",
+            appId: "1:1025596003609:web:81a3a4ce3204c0d717e188",
+            measurementId: "G-PHKFZ6MHQ9"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 방명록 남기기 버튼 클릭 시 db에 저장
+        $("#btnGbSave").click(async function () {
+            let writer = $('#writer').val();
+            let content = $('#content').val();
+            let count = 0;
+            if (writer.length == 0 || content.length == 0) {
+                alert('작성자와 내용을 입력해주세요');
+            } else {
+                let doc = {
+                    'writer': writer,
+                    'content': content
+                };
+                await addDoc(collection(db, "guestBook"), doc);
+                alert('방명록이 저장됐습니다.')
+                location.reload();
+            }
+        })
+
+        // 방명록 리스트 가져오기
+        let docs = await getDocs(collection(db, "guestBook"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+            console.log(row);
+            let writer = row['writer'];
+            let content = row['content'];
+
+            let temp_html = `
+                <div class = guest_booklist_line>
+                        <div style='margin-right:50px;'>
+                            작성자 : ${writer}
+                        </div>
+                        <div>
+                            내용 : ${content}
+                        </div>
+                </div>`
+            $('#guestBookList').append(temp_html);
+
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="myTitle" class="mytitle">
+        "남자가 셋 소개도 셋"
+    </div>
+    <div id="menu" class="menu">
+        <btn id="btnGoIndex">팀원 소개</btn>
+        <btn id="btnGoGb">방명록</btn>
+    </div>
+
+    <div class="guest">
+        <div style="display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;">방명록
+    </div>
+        <div id="guestBookList" class="guest_booklist">
+            <!-- 방명록 리스트가 붙을 위치 -->
+        </div>
+        <div class="guest_btn">
+            <button id="btnGbWrite">방명록 작성하기</button>
+            <button id="btnGoGb">방명록 전체보기</button>
+        </div>
+        <div class="guest_book" id="guestBook" style="display: none;">
+            <div>
+                <input type="email" id="writer" placeholder="작성자">
+            </div>
+            <div>
+                <input type="email" id="content" placeholder="내용">
+            </div>
+            <div class="guest_book_btnSave">
+                <button id="btnGbSave" type="button" class="btn btn-primary">방명록 남기기</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>
