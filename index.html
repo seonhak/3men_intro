@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>세 남자를 소개합니다</title>
+    <link rel="stylesheet" href="css/css.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -22,7 +23,6 @@
 
             height: 150px;
             width: 1200px;
-            color: black;
             margin: 0px auto 0px auto;
 
             display: flex;
@@ -31,16 +31,8 @@
             justify-content: center;
         }
 
-        .subtitle {
-            height: 100px;
-            width: 1200px;
-            font-size: 50px;
-            margin: 0px auto 50px auto;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .menu {
+            font-size: 36px;
         }
 
         body {
@@ -106,66 +98,9 @@
         .member_card_intro {
             margin-right: 30px;
         }
-
-
-        .guest {
-            width: 800px;
-            height: 360px;
-            border: 1px solid black;
-            border-radius: 8px;
-            text-align: left;
-            padding: 50px;
-            margin: 20px auto 20px auto;
-        }
-        
-        .mypostingbox>button{
-            margin-left: 650px;
-        }
-
-        .guest_comments {
-            border: 1px solid black;
-            border-radius: 8px;
-            width: 800px;
-            height: 360px;
-            text-align: left;
-            margin: 20px auto 20px auto;
-
-            
-        }
-
-        .comments_list{
-            width:800px;
-            margin: 20px auto 20px auto;
-            display: flex;
-            flex-direction: row;
-        }
-
-        .guest_name {
-            width:100px;
-            height:50px;
-            border: 1px solid black;
-            border-radius: 5px;
-            padding: 10px;
-            text-align: center;
-            margin: 10px 30px 10px 30px;
-
-        }
-
-        .comments {
-            width: 600px;
-            height: 50px;
-            border: 1px solid black;
-            border-radius: 5px;
-            margin: 10px 0px 10px 0px;
-            padding: 10px;
-            text-align: left;
-        }
     </style>
     
     <script type="module">
-
-        let selectedMenu = '<btn id="btnGoIndex" style="font-weight:bold;">팀원 소개</btn>'
-        $('#btnGoIndex').replaceWith(selectedMenu);
         
         $('#myTitle').click(async function () {
             window.location = "index.html";
@@ -189,21 +124,15 @@
         "남자가 셋 소개도 셋"
     </div>
 
-    <div id="menu" class="menu">
+    <div class="menu">
         <btn id="btnGoIndex">팀원 소개</btn>
         <btn id="btnGoGb">방명록</btn>
-    </div>
-
-    <div style="display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;">팀원 소개
     </div>
 
     <div class="team_intro">
         <div class="team_intro_box">
             <div class="team_intro_box_title">
-                세 남자
+                세 남자 (Spring_B_3)
             </div>
             <div class="team_intro_box_cont">
                 <p>팀 소개: 남자가 셋
