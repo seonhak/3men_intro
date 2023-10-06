@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세남자 소개페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+        * {
+            font-family: 'Dongle', sans-serif;
+            font-size: 36px;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            line-height: 1;
+        }
+
+        .member {
+            width: auto;
+            height: 300px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member_photo {
+            background-color: green;
+            height: 250px;
+            width: 370px;
+            margin: 0px 15px 15px 0px;
+            padding: 15px;
+            border-radius: 8px;
+
+            background-image: url('https://www.ancient-origins.net/sites/default/files/field/image/Agesilaus-II-cover.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .member_about {
+            background-color: pink;
+            height: 250px;
+            width: 375px;
+            margin: 0 0 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .member_about>div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .member_about>div>p {
+            width: 100px;
+            margin: 5px;
+        }
+
+        .member_about>div>p,
+        .member_about>div>span {
+            font-size: 20px;
+        }
+
+        .member_intro_box {
+            height: 150px;
+            width: 805px;
+            margin: 0 0 10px 0;
+            padding: 5px;
+
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+
+        .member_intro>div>p {
+            font-size: 25px;
+        }
+
+        .member_card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member_card_intro {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="member">
+        <div class="member_photo">
+        </div>
+        <div class="member_about">
+            <div>
+                <p>이름</p>
+                <span>: 이름</span>
+            </div>
+            <div>
+                <p>MBTI</p>
+                <span>: MBTI</span>
+            </div>
+            <div>
+                <p>블로그주소</p>
+                <span>: 블로그주소</span>
+            </div>
+            <div>
+                <p>한마디</p>
+                <span>: 한마디</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="member_intro">
+        <div class="member_intro_box">
+            자기소개 :
+            <p>자기소개</p>
+        </div>
+        <div class="member_intro_box">
+            장점 :
+            <p>장점</p>
+        </div>
+        <div class="member_intro_box">
+            TMI :
+            <p>TMI</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="member_card">
+            <div class="member_card_intro">
+                <t>팀장 최선학</t>
+                <a href="./member_intro1.html" target="_self"><img src="src/img/choi.png" width="50" height="55" /></a>
+            </div>
+            <div class="member_card_intro">
+                <t>팀원 배형태</t>
+                <a href="./member_intro2.html" target="_self"><img src="src/img/bae.png" width="50" height="55"
+                        margin="0 15" /></a>
+            </div>
+            <div class="member_card_intro">
+                <t>팀원 김동민</t>
+                <img src="src/img/open.png" width="50" height="55" />
+            </div>
+            <div class="member_card_intro">
+                <t>돌아가기</t>
+                <a href="./index.html" target="_self"><img src="src/img/back.png" width="50" height="55" /></a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
