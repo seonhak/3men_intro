@@ -1,98 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>세 남자를 소개합니다</title>
-
+    <link rel="stylesheet" href="css/css.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
-
-        * {
-            font-family: 'Dongle', sans-serif;
-            font-size: 36px;
-        }
-
-        .mytitle {
-            border: 1px solid black;
-            border-radius: 5px;
-
-            height: 250px;
-            width: 1200px;
-            color: black;
-            margin: 0px auto 0px auto;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .guest {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .guest_btn {
-            margin-top: 10px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .guest_book {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .guest_booklist {
-            border: 1px solid black;
-
-        }
-
-        .guest_booklist_line {
-            height: fit-content;
-            padding-right: 50px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-        }
-    </style>
-
     <script type="module">
-        let selectedMenu = '<btn id="btnGoGb" style="font-weight:bold;">방명록</btn>'
-        $('#btnGoGb').replaceWith(selectedMenu);
-        $('#myTitle').click(async function () {
-            window.location = "index.html";
-            window.location.href = "index.html";
-            window.location.assign("index.html");
-        })
-
-        $('#btnGoGb').click(async function () {
-            window.location = "guest_book.html";
-        })
-        $('#btnGoIndex').click(async function () {
-            window.location = "index.html";
-        })
-
-        $('#btnGbWrite').click(async function () {
-            $('#guestBook').toggle();
-        })
 
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -116,6 +30,25 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // 방명록 리스트 가져오기
+        let docs = await getDocs(collection(db, "guestBook"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+            let num = row['num'];
+            let title = row['title'];
+            let writer = row['writer'];
+            let count = row['count'];
+
+            let temp_html = `<div>
+                    <div class="num">${num}</div>
+                    <div class="title">${title}</div>
+                    <div class="writer">${writer}</div>
+                    <div class="date">2023.10.05</div>
+                    <div class="count">${count}</div>
+                </div>`
+            $('#board_list').append(temp_html);
+
+        });
         // 방명록 남기기 버튼 클릭 시 db에 저장
         $("#btnGbSave").click(async function () {
             let writer = $('#writer').val();
@@ -133,66 +66,37 @@
                 location.reload();
             }
         })
-
-        // 방명록 리스트 가져오기
-        let docs = await getDocs(collection(db, "guestBook"));
-        docs.forEach((doc) => {
-            let row = doc.data();
-            console.log(row);
-            let writer = row['writer'];
-            let content = row['content'];
-
-            let temp_html = `
-                <div class = guest_booklist_line>
-                        <div style='margin-right:50px;'>
-                            작성자 : ${writer}
-                        </div>
-                        <div>
-                            내용 : ${content}
-                        </div>
-                </div>`
-            $('#guestBookList').append(temp_html);
-
-        });
     </script>
-
 </head>
-
 <body>
-    <div id="myTitle" class="mytitle">
+
+    <div class="header">
         "남자가 셋 소개도 셋"
     </div>
-    <div id="menu" class="menu">
-        <btn id="btnGoIndex">팀원 소개</btn>
-        <btn id="btnGoGb">방명록</btn>
-    </div>
 
-    <div class="guest">
-        <div style="display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;">방명록
+    <div id="menu" class="menu">
+        <a href="index.html" id="menu_index" class="index">팀원 소개</a>
+        <a href="guest_book.html" id="menu_guest_book" class="guest_book">방명록</a>
     </div>
-        <div id="guestBookList" class="guest_booklist">
-            <!-- 방명록 리스트가 붙을 위치 -->
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>방명록</strong>
+            <p>팀 세 남자에게 응원의 메세지를 전해주세요</p>
         </div>
-        <div class="guest_btn">
-            <button id="btnGbWrite">방명록 작성하기</button>
-            <button id="btnGoGb">방명록 전체보기</button>
-        </div>
-        <div class="guest_book" id="guestBook" style="display: none;">
-            <div>
-                <input type="email" id="writer" placeholder="작성자">
+        <div class="board_list_wrap">
+            <div class="board_list" id="board_list">
+                <div class="top">
+                    <div class="num">번호</div>
+                    <div class="title">제목</div>
+                    <div class="writer">글쓴이</div>
+                    <div class="count">조회</div>
+                </div>
             </div>
-            <div>
-                <input type="email" id="content" placeholder="내용">
-            </div>
-            <div class="guest_book_btnSave">
-                <button id="btnGbSave" type="button" class="btn btn-primary">방명록 남기기</button>
+            <div class="bt_wrap">
+                <a href="write.html" class="on">등록</a>
+                <a href="edit.html">수정</a>
             </div>
         </div>
     </div>
 </body>
-
-
 </html>
