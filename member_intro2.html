@@ -102,6 +102,94 @@
             margin: 15px;
         }
     </style>
+
+    <script type="module">
+        // firebase 정보입력
+        // Firebase SDK 라이브러리 가져오기
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import {
+            getFirestore
+        } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import {
+            collection,
+            addDoc
+        } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import {
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD_kIjZeEMgwlGAwxaxtcfBXdK8be_1ZO8",
+            authDomain: "sparta-78444.firebaseapp.com",
+            projectId: "sparta-78444",
+            storageBucket: "sparta-78444.appspot.com",
+            messagingSenderId: "235080934867",
+            appId: "1:235080934867:web:4cd292c2bea672911cbb26",
+            measurementId: "G-E8QRFCV76B"
+        };
+
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        // firebase
+
+        let docs = await getDocs(collection(db, "배형태"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+            console.log(row);
+
+            let name = row['name'];
+            let mbti = row['mbti'];
+            let blogurl = row['blogurl'];
+            let comment = row['comment'];
+            let intro = row['intro'];
+            let pros = row['pros'];
+            let tmi = row['tmi'];
+
+            let temp_html1 = `
+    <div class="member_photo">
+    </div>
+    <div class="member_about">
+        <div>
+            <p>이름</p>
+            <span>: ${name}</span>
+        </div>
+        <div>
+            <p>MBTI</p>
+            <span>: ${mbti}</span>
+        </div>
+        <div>
+            <p>블로그주소</p>
+            <span>: ${blogurl}</span>
+        </div>
+        <div>
+            <p>한마디</p>
+            <span>: ${comment}</span>
+        </div>
+    </div>`;
+            $('#about').html(temp_html1);
+
+            let temp_html2 = `
+    <div class="member_intro_box">
+        자기소개 :
+        <p>${intro}</p>
+    </div>
+    <div class="member_intro_box">
+        장점 :
+        <p>${pros}</p>
+    </div>
+    <div class="member_intro_box">
+        TMI :
+        <p>${tmi}</p>
+    </div>`;
+            $('#intro').html(temp_html2);
+        })
+    </script>
 </head>
 
 <body>
