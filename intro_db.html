@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터베이스에 전송하기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .btn {
+            width: 150px;
+            height: 50px;
+            font-size: large;
+        }
+    </style>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import {
+            getFirestore
+        } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import {
+            addDoc, collection
+        } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import {
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD_kIjZeEMgwlGAwxaxtcfBXdK8be_1ZO8",
+            authDomain: "sparta-78444.firebaseapp.com",
+            projectId: "sparta-78444",
+            storageBucket: "sparta-78444.appspot.com",
+            messagingSenderId: "235080934867",
+            appId: "1:235080934867:web:4cd292c2bea672911cbb26",
+            measurementId: "G-E8QRFCV76B"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+        $("#savebtn").click(async function () {
+            let name = $('#name').val();
+            let mbti = $('#mbti').val();
+            let blogurl = $('#blogurl').val();
+            let comment = $('#comment').val();
+            let intro = $('#intro').val();
+            let pros = $('#pros').val();
+            let tmi = $('#tmi').val();
+
+            let doc = {
+                'name': name,
+                'mbti': mbti,
+                'blogurl': blogurl,
+                'comment': comment,
+                'intro': intro,
+                'pros': pros,
+                'tmi': tmi
+            };
+            await addDoc(collection(db, name), doc);
+            alert('저장 완료!');
+            var link = './singnup_page.html';
+            location.href = link;
+        })
+
+        $("#canclebtn").click(async function () {
+            var link = './singnup_page.html';
+            location.href = link;
+        })
+    </script>
+</head>
+
+<body>
+    <div class="name">
+        이름: <input type="text" id="name" name="textfield" style="text-align:left; width:800px; height:50px;">
+    </div>
+    <hr>
+    MBTI: <input type="text" name="textfield" id="mbti"
+        style="text-align:left; text-transform: uppercase; width:800px; height:50px;">
+    <hr>
+    블로그주소: <input type="text" id="blogurl" name="textfield" style="text-align:left; width:800px; height:50px;">
+    <hr>
+    한마디: <input type="text" id="comment" name="textfield" style="text-align:left; width:800px; height:50px;">
+    <hr>
+    자기소개: <input type="text" id="intro" name="textfield" style="text-align:left; width:800px; height:50px;">
+    <hr>
+    장점: <input type="text" id="pros" name="textfield" style="text-align:left; width:800px; height:50px;">
+    <hr>
+    TMI: <input type="text" id="tmi" name="textfield" style="text-align:left; width:800px; height:50px;">
+    <hr>
+    <button id="savebtn" class="btn">저장하기</button>
+    <button id="canclebtn" class="btn">취소</button>
+</body>
+
+</html>
