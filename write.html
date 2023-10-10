@@ -1,45 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>방명록</title>
     <link rel="stylesheet" href="css/css.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module">
+
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { doc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            apiKey: "AIzaSyDujVii00UPF9KdTE2FGNzVmky0TxiZrf0",
+            authDomain: "men-intro.firebaseapp.com",
+            projectId: "men-intro",
+            storageBucket: "men-intro.appspot.com",
+            messagingSenderId: "1025596003609",
+            appId: "1:1025596003609:web:81a3a4ce3204c0d717e188",
+            measurementId: "G-PHKFZ6MHQ9"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 방명록 남기기 버튼 클릭 시 db에 저장
+        $("#btnGbSave").click(async function () {
+            let writer = $('#writer').val();
+            let content = $('#content').val();
+            let pwd = $('#pwd').val();
+            let title = $('#title').val();
+
+            let count = 0;
+            if (writer.length == 0) {
+                alert('작성자를 입력해주세요');
+            } else if (content.length == 0) {
+                alert('내용을 입력해주세요');
+
+            } else if (pwd.length == 0) {
+                alert('비밀번호를 입력해주세요');
+
+            } else if (title.length == 0) {
+                alert('제목을 입력해주세요');
+            } else {
+                let doc = {
+                    'title': title,
+                    'writer': writer,
+                    'content': content,
+                    'password': pwd
+                };
+                await addDoc(collection(db, "guestBook"), doc);
+                alert('방명록이 저장됐습니다.')
+
+                var link = 'guest_book.html';
+                location.href = link;
+                location.replace(link);
+                window.open(link);
+            }
+        })
+    </script>
 </head>
+
 <body>
     <div class="board_wrap">
         <div class="board_title">
-            <strong>공지사항</strong>
-            <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+            <strong>방명록</strong>
+            <p>팀 세 남자에게 응원의 메세지를 전해주세요</p>
         </div>
         <div class="board_write_wrap">
             <div class="board_write">
-                <div class="title">
-                    <dl>
-                        <dt>제목</dt>
-                        <dd><input type="text" placeholder="제목 입력"></dd>
-                    </dl>
-                </div>
                 <div class="info">
                     <dl>
                         <dt>글쓴이</dt>
-                        <dd><input type="text" placeholder="글쓴이 입력"></dd>
-                    </dl>
-                    <dl>
-                        <dt>비밀번호</dt>
-                        <dd><input type="password" placeholder="비밀번호 입력"></dd>
+                        <dd><input type="text" id="writer" placeholder="글쓴이 입력"></dd>
                     </dl>
                 </div>
                 <div class="cont">
-                    <textarea placeholder="내용 입력">
+                    <textarea id="content" placeholder="내용 입력">
                     </textarea>
                 </div>
             </div>
             <div class="bt_wrap">
-                <a href="view.html" class="on">등록</a>
+                <a href="#" id="btnGbSave" class="on">등록</a>
                 <a href="guest_book.html">취소</a>
             </div>
         </div>
     </div>
 </body>
+
 </html>

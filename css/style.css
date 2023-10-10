@@ -4,7 +4,7 @@
 }
 
 html {
-    font-size: 10px;
+    font-size: 15px;
 }
 
 .header {
@@ -14,17 +14,6 @@ html {
     text-align: center;
     border: 1px solid black;
 }
-
-.menu {
-    font-size: 1.4rem;
-    width: 800px;
-    margin: 10px auto;
-    font-weight: 600;
-}
-
-.menu .index {}
-
-.menu .guest_book {}
 
 ul,
 li {
@@ -39,6 +28,7 @@ a {
 .board_wrap {
     width: 800px;
     margin: 100px auto;
+    margin-top: 0px;
 }
 
 .board_title {
@@ -111,12 +101,8 @@ a {
     font-weight: 600;
 }
 
-.board_list .num {
-    width: 10%;
-}
-
 .board_list .title {
-    width: 60%;
+    width: 70%;
     text-align: left;
 }
 
@@ -125,16 +111,9 @@ a {
 }
 
 .board_list .writer {
-    width: 10%;
+    width: 30%;
 }
 
-.board_list .date {
-    width: 10%;
-}
-
-.board_list .count {
-    width: 10%;
-}
 
 .board_page {
     margin-top: 30px;
@@ -222,7 +201,6 @@ a {
     font-size: 1.4rem;
 }
 
-.board_view .info dl dt {}
 
 .board_view .info dl dd {
     margin-left: 10px;
@@ -281,7 +259,7 @@ a {
 
 .board_write .title input[type="text"],
 .board_write .info input[type="text"],
-.board_write .info input[type="password"]{
+.board_write .info input[type="password"] {
     padding: 10px;
     box-sizing: border-box;
 }
