@@ -36,26 +36,16 @@
         $("#btnGbSave").click(async function () {
             let writer = $('#writer').val();
             let content = $('#content').val();
-            let pwd = $('#pwd').val();
-            let title = $('#title').val();
 
-            let count = 0;
             if (writer.length == 0) {
                 alert('작성자를 입력해주세요');
             } else if (content.length == 0) {
                 alert('내용을 입력해주세요');
 
-            } else if (pwd.length == 0) {
-                alert('비밀번호를 입력해주세요');
-
-            } else if (title.length == 0) {
-                alert('제목을 입력해주세요');
-            } else {
+            }else{
                 let doc = {
-                    'title': title,
                     'writer': writer,
-                    'content': content,
-                    'password': pwd
+                    'content': content
                 };
                 await addDoc(collection(db, "guestBook"), doc);
                 alert('방명록이 저장됐습니다.')
