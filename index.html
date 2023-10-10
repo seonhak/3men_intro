@@ -32,6 +32,7 @@
 
         .menu {
             text-align: center;
+            margin-bottom: 50px;
         }
         .menu>button {
             width:100px;
@@ -156,20 +157,40 @@
     </div>
 
     <div class="member_card">
-        <div class="member_card_intro">
-            <a href="./member_intro1.html" target="_self"><img src="./src/img/img_gather_town.png" /></a><br>
-            <t>팀장</t>
-            <t>최선학님을 소개합니다</t>
-        </div>
-        <div class="member_card_intro">
-            <a href="./member_intro2.html" target="_self"><img src="./src/img/img_gather_town.png" /></a><br>
-            <t>팀원</t>
-            <t>배형태님을 소개합니다</t>
-        </div>
-        <div class="member_card_intro">
-            <a href="./member_intro3.html" target="_self"><img src="./src/img/img_gather_town.png" /></a><br>
-            <t>팀원</t>
-            <t>김동민님을 소개합니다</t>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <a href="./member_intro1.html" target="_self">
+                        <img src="./src/img/img_gather_town.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">최선학</h5>
+                        <p class="card-text">팀장</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="./member_intro2.html" target="_self">
+                        <img src="./src/img/img_gather_town.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">배형태</h5>
+                        <p class="card-text">팀원</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="./member_intro3.html" target="_self">
+                        <img src="./src/img/img_gather_town.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">김동민</h5>
+                        <p class="card-text">팀원</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
