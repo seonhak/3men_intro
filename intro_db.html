@@ -62,14 +62,14 @@
                 'pros': pros,
                 'tmi': tmi
             };
-            await addDoc(collection(db, name), doc);
+            await addDoc(collection(db, name), doc); // firebase 컬렉션명 name값으로 저장하기
             alert('저장 완료!');
-            var link = './singnup_page.html';
+            var link = './index.html'; // 페이지 이동
             location.href = link;
         })
 
         $("#canclebtn").click(async function () {
-            var link = './singnup_page.html';
+            var link = './index.html'; // 페이지 이동
             location.href = link;
         })
     </script>
